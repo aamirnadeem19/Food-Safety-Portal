@@ -15,10 +15,10 @@ public class Registration {
       System.out.println("Connection established.!");
       //Inserting values to a table
       Scanner sc = new Scanner(System.in);
-      System.out.println("Enter ID: ");
-      String u_ID = sc.nextLine();
-      System.out.println("Enter Name: ");
-      String u_Name = sc.nextLine();
+      System.out.println("Enter Full Name: ");
+      String FullName = sc.nextLine();
+      System.out.println("Enter a unique User_Name: ");
+      String User_Name = sc.nextLine();
       System.out.println("Enter Mobile: ");
       String mobile = sc.nextLine();
       System.out.println("Enter Email: ");
@@ -32,11 +32,11 @@ public class Registration {
       System.out.println("Enter City: ");
       String city = sc.nextLine();
 
-      String query = "INSERT INTO REGISTRATION(u_ID, u_Name, mobile, email, password, DOB, gender, city, date_time)VALUES (?,?,?,?,?,?,?,?, CURRENT_TIMESTAMP)";
+      String query = "INSERT INTO REGISTRATION(FullName, User_Name, mobile, email, password, DOB, gender, city, date_time)VALUES (?,?,?,?,?,?,?,?, CURRENT_TIMESTAMP)";
       //Query to insert into the table
       PreparedStatement pstmt = con.prepareStatement(query);
-      pstmt.setString(1, u_ID);
-      pstmt.setString(2, u_Name);
+      pstmt.setString(1, FullName);
+      pstmt.setString(2, User_Name);
       pstmt.setString(3, mobile);
       pstmt.setString(4, email);
       pstmt.setString(5, password);
@@ -53,7 +53,8 @@ public class Registration {
 	    System.out.println("Driver class not found!! Exception Occured");
   }
   catch(SQLException sqle){
-	    sqle.printStackTrace();
+	    System.out.println();
+	    System.out.println("This username is not unique, Please enter a unique username!!");
   }
 
    finally {
@@ -62,7 +63,7 @@ public class Registration {
 	           }
 	catch(SQLException sqle){
 		System.out.println("Exception occured while closing the connection");
-	    }
-	    }
+	      }
+	      }
    }
 }
