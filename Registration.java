@@ -3,8 +3,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
+
 public class Registration {
    public static void main(String args[])throws Exception {
+   PasswordValid checkpassword = new PasswordValid();
    Connection con = null;
    try {
 	  final String driver = "oracle.jdbc.driver.OracleDriver";
@@ -17,7 +19,7 @@ public class Registration {
       Scanner sc = new Scanner(System.in);
       System.out.println("Enter Full Name: ");
       String FullName = sc.nextLine();
-      System.out.println("Enter a unique User_Name: ");
+      System.out.println("Enter a unique username: ");
       String User_Name = sc.nextLine();
       System.out.println("Enter Mobile: ");
       String mobile = sc.nextLine();
@@ -25,12 +27,15 @@ public class Registration {
       String email = sc.nextLine();
       System.out.println("Enter Password: ");
       String password = sc.nextLine();
+      Boolean check = checkpassword.validate(password);
       System.out.println("Enter DOB: ");
       String DOB = sc.nextLine();
       System.out.println("Enter Gender: ");
       String gender = sc.nextLine();
       System.out.println("Enter City: ");
       String city = sc.nextLine();
+      
+     
 
       String query = "INSERT INTO REGISTRATION(FullName, User_Name, mobile, email, password, DOB, gender, city, date_time)VALUES (?,?,?,?,?,?,?,?, CURRENT_TIMESTAMP)";
       //Query to insert into the table
