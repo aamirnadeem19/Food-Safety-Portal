@@ -23,16 +23,21 @@ public class Login {
 			String pswd=sc.nextLine();
 		
 			String q = "select * from registration where user_name = '"+userName+"' and password = '"+pswd+"'";
-			ResultSet rs=smt.executeQuery(q);//to execute the query
+			ResultSet rs=smt.executeQuery(q);
 			
-			while(rs.next()){ 
+			//to print the ResultSet on console
+			if(rs.next()){ 
 				{
-				System.out.println("Welcome, you are logged in now.!");
-				
+				     System.out.println("Welcome, you are logged in now.!");
+				}
+			             }
+			else
+				{
+					System.out.println("Username or Password is incorrect.!!!");
 				}
 		
 			sc.close();
-		                    }
+		                    
 		}
 		   catch(ClassNotFoundException e){
 			    System.out.println("Driver class not found!! Exception Occured");
